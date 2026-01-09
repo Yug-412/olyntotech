@@ -1,0 +1,45 @@
+.admin-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 26, 61, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.admin-card {
+  background: #ffffff;
+  padding: 36px;
+  border-radius: 14px;
+  width: 360px;
+  text-align: center;
+}
+
+.admin-card h2 {
+  margin-bottom: 20px;
+}
+
+.admin-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  border: 1px solid #dbe4ff;
+}
+
+.admin-card button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 30px;
+  background: #1f4fd8;
+  color: #fff;
+  font-weight: 600;
+}
+
+.error {
+  color: red;
+  font-size: 13px;
+  margin-bottom: 10px;
+}

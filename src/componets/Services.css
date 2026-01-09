@@ -1,0 +1,739 @@
+/* SECTION WITH VIDEO */
+.services-section.video-bg {
+  position: relative;
+  min-height: 100vh;
+  padding: 140px 24px;
+  overflow: hidden;
+}
+
+/* BACKGROUND VIDEO */
+.services-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* DARK OVERLAY */
+.services-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 26, 61, 0.75),
+    rgba(4, 11, 30, 0.9)
+  );
+  z-index: 2;
+}
+
+/* CONTENT ABOVE VIDEO */
+.services-container {
+  position: relative;
+  z-index: 3;
+  max-width: 1200px;
+  margin: auto;
+ 
+}
+
+/* TEXT COLORS FOR DARK BG */
+.services-header h1,
+.section-title {
+  color: #ffffff;
+}
+
+.services-header p,
+.section-subtitle {
+  color: #dbe4ff;
+}
+
+.services-points li {
+  color: #c7d2ff;
+}
+
+/* SERVICE CARDS */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin-top: 36px;
+}
+
+.service-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 14px;
+  padding: 26px;
+  color: #ffffff;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.service-card p {
+  color: #e6ecff;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .services-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 2ns section ^//* SECTION */
+.aiops-section {
+  padding: 60px 60px;
+  background: linear-gradient(180deg, #071a3d, #040b1e);
+  color: #ffffff;
+}
+
+/* CONTAINER – FORCE EQUAL HEIGHT */
+.aiops-container {
+  max-width: 1300px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 64px;
+  align-items: stretch; /* 🔥 KEY LINE */
+}
+
+/* VIDEO WRAPPER – MATCH HEIGHT */
+.aiops-video-wrap {
+  position: relative;
+  height: 100%;              /* 🔥 MATCH TEXT HEIGHT */
+  min-height: 520px;         /* 🔥 ENTERPRISE STANDARD */
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+
+/* VIDEO */
+.aiops-video {
+  width: 100%;
+  height: 100%;              /* 🔥 FILL FULL HEIGHT */
+  object-fit: cover;         /* 🔥 NO DISTORTION */
+  display: block;
+}
+
+/* GLOW */
+.aiops-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(79, 209, 197, 0.18),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* CONTENT */
+.aiops-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* 🔥 BALANCED VERTICAL ALIGN */
+}
+
+.aiops-content h2 {
+  font-size: 36px;
+  margin-bottom: 6px;
+}
+
+.aiops-subtitle {
+  font-size: 14px;
+  letter-spacing: 0.6px;
+  color: #4fd1c5;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.aiops-desc {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: #d5dcff;
+  margin-bottom: 26px;
+}
+
+/* LISTS */
+.aiops-list,
+.aiops-impact {
+  margin-bottom: 26px;
+}
+
+.aiops-list h4,
+.aiops-impact h4 {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.aiops-list ul,
+.aiops-impact ul {
+  padding-left: 18px;
+}
+
+.aiops-list li,
+.aiops-impact li {
+  font-size: 14.5px;
+  margin-bottom: 6px;
+  color: #cfd8ff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .aiops-container {
+    grid-template-columns: 1fr;
+  }
+
+  .aiops-video-wrap {
+    min-height: 360px;
+  }
+
+  .aiops-content h2 {
+    font-size: 28px;
+  }
+}
+
+/* SECTION *//* =========================================
+   AI FINANCE & ACCOUNTING (ENTERPRISE DESIGN)
+   ========================================= *//* ===============================
+   AI FINANCE SECTION – FINAL FIX
+   =============================== */
+
+.aifin-section {
+  padding: 60px 24px;
+  background: #f6f9ff;
+  color: #071a3d;
+}
+
+/* GRID */
+.aifin-container {
+  max-width: 1280px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* 🔥 TRUE 50 / 50 */
+  gap: 64px;
+
+  align-items: stretch;            /* 🔥 SAME HEIGHT */
+}
+
+/* ================= LEFT CONTENT ================= */
+
+.aifin-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.aifin-content h2 {
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+
+.aifin-subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0a5fb4;
+  margin-bottom: 20px;
+}
+
+.aifin-desc {
+  font-size: 15.5px;
+  line-height: 1.7;
+  margin-bottom: 28px;
+  color: #1f2d4d;
+}
+
+/* BLOCKS */
+.aifin-block,
+.aifin-impact {
+  margin-bottom: 26px;
+}
+
+.aifin-block h4,
+.aifin-impact h4 {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.aifin-block ul,
+.aifin-impact ul {
+  padding-left: 18px;
+}
+
+.aifin-block li,
+.aifin-impact li {
+  font-size: 14.5px;
+  margin-bottom: 6px;
+  color: #2b3a55;
+}
+
+/* ================= RIGHT IMAGE ================= */
+
+.aifin-video-wrap {
+  position: relative;
+
+  width: 100%;
+  height: 100%;               /* 🔥 MATCH CONTENT HEIGHT */
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  background: #0b1e3c;
+}
+
+/* IMAGE – FULL WIDTH & HEIGHT */
+.aifin-video-wrap img {
+  width: 100%;
+  height: 100%;
+
+  display: block;             /* 🔥 removes inline gaps */
+  object-fit: cover;          /* 🔥 FULL BLEED */
+  object-position: center;
+}
+
+/* SUBTLE GLOW */
+.aifin-glow {
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(10, 166, 201, 0.22),
+    transparent 65%
+  );
+
+  pointer-events: none;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+  .aifin-container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .aifin-video-wrap {
+    height: 360px;           /* controlled mobile height */
+  }
+}
+
+@media (max-width: 576px) {
+  .aifin-section {
+    padding: 90px 18px;
+  }
+
+  .aifin-content h2 {
+    font-size: 28px;
+  }
+}
+
+/* ======================================
+   ENTERPRISE AI AUTOMATION – DARK THEME
+   ====================================== */
+
+.ai-enterprise-section {
+  padding: 60px 24px;
+  background: linear-gradient(180deg, #071a3d, #040b1e);
+  color: #e6ecff;
+}
+
+/* GRID */
+.ai-enterprise-container {
+  max-width: 1280px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+
+  align-items: stretch; /* same height */
+}
+
+/* ================= VIDEO ================= */
+
+.ai-video-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 22px;
+  overflow: hidden;
+
+  background: #020816;
+}
+
+.ai-video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Dark overlay for contrast */
+.ai-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 11, 30, 0.25),
+    rgba(4, 11, 30, 0.75)
+  );
+}
+
+/* ================= CONTENT ================= */
+
+.ai-enterprise-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ai-enterprise-content h2 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #ffffff;
+}
+
+.ai-subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #5cc8ff; /* 🔥 accent blue */
+  margin-bottom: 22px;
+}
+
+.ai-desc {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: #cfd9ff;
+  margin-bottom: 28px;
+}
+
+.ai-desc strong {
+  color: #ffffff;
+}
+
+/* BLOCKS */
+.ai-block {
+  margin-bottom: 26px;
+}
+
+.ai-block h4 {
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.ai-block ul {
+  padding-left: 18px;
+}
+
+.ai-block li {
+  font-size: 14.5px;
+  margin-bottom: 6px;
+  color: #b8c4ff;
+}
+
+/* ================= ANIMATION ================= */
+
+.fade-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: fadeLeft 0.9s ease forwards;
+}
+
+.fade-right {
+  opacity: 0;
+  transform: translateX(40px);
+  animation: fadeRight 0.9s ease forwards;
+}
+
+@keyframes fadeLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+  .ai-enterprise-container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .ai-video-wrap {
+    height: 360px;
+  }
+}
+
+@media (max-width: 576px) {
+  .ai-enterprise-section {
+    padding: 90px 18px;
+  }
+
+  .ai-enterprise-content h2 {
+    font-size: 26px;
+  }
+}
+
+
+
+/* =========================================
+   AI PROCESS SECTION – ENTERPRISE UX
+   ========================================= */
+
+.ai-process-section {
+  padding: 60px 24px;
+  background: #eef4ff;
+  color: #071a3d;
+}
+
+.ai-process-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* HEADER */
+.ai-process-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.ai-process-header h2 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.ai-process-header p {
+  font-size: 15px;
+  color: #425a8b;
+}
+
+/* ================= STEPS ================= */
+
+.ai-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-bottom: 80px;
+}
+
+.ai-step-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+}
+
+.ai-step-card span {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0a5fb4;
+}
+
+.ai-step-card h4 {
+  margin: 12px 0 10px;
+  font-size: 16px;
+}
+
+.ai-step-card p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #425a8b;
+}
+
+/* ================= INFO GRID ================= */
+
+.ai-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  margin-bottom: 80px;
+}
+
+.ai-info-block h3 {
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+
+.ai-info-block h4 {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.ai-info-block ul {
+  padding-left: 18px;
+}
+
+.ai-info-block li {
+  font-size: 14.5px;
+  margin-bottom: 8px;
+  color: #2b3a55;
+}
+
+/* ================= CTA ================= */
+
+.ai-cta {
+  text-align: center;
+}
+
+.ai-cta p {
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.ai-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+/* COMMON BUTTON RESET (IMPORTANT) */
+.btn-primary,
+.btn-secondary {
+  text-decoration: none;          /* 🔥 removes underline */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 30px;
+  border-radius: 999px;
+
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+
+  transition: 
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+/* PRIMARY BUTTON */
+.btn-primary {
+  background: linear-gradient(90deg, #1f4fd8, #3a7bfd);
+  color: #ffffff;
+  box-shadow: 0 14px 35px rgba(31, 79, 216, 0.45);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 50px rgba(31, 79, 216, 0.6);
+}
+
+/* SECONDARY BUTTON */
+.btn-secondary {
+  background: transparent;
+  color: #1f4fd8;
+  border: 1.5px solid #1f4fd8;
+}
+
+.btn-secondary:hover {
+  background: rgba(31, 79, 216, 0.08);
+  transform: translateY(-2px);
+}
+
+/* REMOVE FOCUS OUTLINE (CLEAN LOOK) */
+.btn-primary:focus,
+.btn-secondary:focus {
+  outline: none;
+}
+
+/* BUTTON GROUP SPACING (OPTIONAL) */
+.btn-primary + .btn-secondary {
+  margin-left: 16px;
+}
+
+/* MOBILE FRIENDLY */
+@media (max-width: 600px) {
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+
+  .btn-primary + .btn-secondary {
+    margin-left: 0;
+    margin-top: 12px;
+  }
+}
+
+/* ================= ANIMATIONS ================= */
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.fade-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: fadeLeft 0.8s ease forwards;
+}
+
+.fade-right {
+  opacity: 0;
+  transform: translateX(40px);
+  animation: fadeRight 0.8s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeLeft {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeRight {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1000px) {
+  .ai-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ai-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .ai-steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-cta-buttons {
+    flex-direction: column;
+  }
+}

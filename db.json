@@ -1,0 +1,42 @@
+{
+  "admin": [
+    {
+      "id": "1",
+      "username": "yash",
+      "password": "Yash@123"
+    },
+    {
+      "id": "2",
+      "username": "jeel",
+      "password": "Jeel@123"
+    },
+    {
+      "id": "3",
+      "username": "yug",
+      "password": "Yug@1234"
+    }
+  ],
+  "inquiries": [
+    {
+      "id": "c9f5",
+      "name": "yug patel",
+      "email": "yugjpatel412@gmail.com",
+      "message": "sss",
+      "createdAt": "2026-01-05T10:18:37.654Z"
+    },
+    {
+      "id": "9941",
+      "name": "yug patel",
+      "email": "yugjpatel412@gmail.com",
+      "message": "drer",
+      "createdAt": "2026-01-08T12:02:25.643Z"
+    },
+    {
+      "id": "f790",
+      "name": "ksksks",
+      "email": "shhslks@gdkuguk",
+      "message": "oo",
+      "createdAt": "2026-01-08T12:05:29.063Z"
+    }
+  ]
+}
