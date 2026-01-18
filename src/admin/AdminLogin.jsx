@@ -7,44 +7,59 @@ function AdminLogin() {
 
   const [form, setForm] = useState({
     username: "",
-    password: ""
+    password: "",
   });
 
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const validatePassword = (password) => {
-    const regex =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{8,}$/;
-    return regex.test(password);
-  };
-
+  // Handle input change
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+    setError("");
   };
 
+  // Handle login submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
 
-    if (!validatePassword(form.password)) {
-      setError(
-        "Password must be at least 8 characters and include 1 letter, 1 number, and 1 symbol."
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/admin/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: form.username.trim(),
+            password: form.password,
+          }),
+        }
       );
-      return;
-    }
 
-    const res = await fetch(
-      `http://localhost:5000/admin?username=${form.username}&password=${form.password}`
-    );
-    const data = await res.json();
+      const data = await response.json();
 
-    if (data.length > 0) {
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
+      }
+
+      // ✅ Login success
       localStorage.setItem("adminAuth", "true");
+      localStorage.setItem("adminId", data.adminId);
+
       navigate("/admin/inquiry");
 
-    } else {
-      setError("Invalid username or password");
+    } catch (err) {
+      setError(err.message || "Invalid username or password");
+    } finally {
+      setLoading(false);
     }
-
   };
 
   return (
@@ -58,7 +73,9 @@ function AdminLogin() {
           type="text"
           name="username"
           placeholder="Admin username"
+          value={form.username}
           onChange={handleChange}
+          autoComplete="username"
           required
         />
 
@@ -66,11 +83,15 @@ function AdminLogin() {
           type="password"
           name="password"
           placeholder="Password"
+          value={form.password}
           onChange={handleChange}
+          autoComplete="current-password"
           required
         />
 
-        <button type="submit">Login</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
       </form>
     </div>
   );
