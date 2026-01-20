@@ -89,7 +89,7 @@ const Services = () => {
             disablePictureInPicture
             controls={false}
           >
-            <source src="/video/ai1.mov" type="video/mp4" />
+            <source src="/video/ai1.mp4" type="video/mp4" />
           </video>
 
           <div className="aiops-glow"></div>
