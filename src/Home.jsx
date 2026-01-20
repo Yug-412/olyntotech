@@ -54,7 +54,7 @@ const Home = () => {
         {/* LEFT */}
         <div className="enterprise-card reveal-left">
           <h2>What We Do</h2>
-          <p className="section-subtitle">Enterprise AI Agent Solutions</p>
+          <p className="section-subtitle1">Enterprise AI Agent Solutions</p>
 
           <p className="lead">
             We don’t build tools.<br />

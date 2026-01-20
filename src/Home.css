@@ -420,7 +420,13 @@ html, body {
   color: #6c7aa0;
   margin-bottom: 28px;
 }
-
+.section-subtitle1 {
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgb(159, 179, 255);;
+  margin-bottom: 28px;
+}
 .enterprise-card.dark .section-subtitle {
   color: #9fb3ff;
 }
