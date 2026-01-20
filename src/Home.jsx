@@ -79,7 +79,7 @@ const Home = () => {
           </div>
 
           <div className="service-block highlight">
-            <h4>⚙️ Custom Enterprise AI Automation</h4>
+            <h4> Custom Enterprise AI Automation</h4>
             <p>
               Design and deploy AI agents for complex, cross-department workflows
               tailored to your organization.

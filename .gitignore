@@ -23,7 +23,3 @@ dist-ssr
 *.sln
 *.sw?
 
-# Ignore videos
-/public/video/
-*.mp4
-*.mov
