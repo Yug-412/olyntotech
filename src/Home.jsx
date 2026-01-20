@@ -7,7 +7,7 @@ const Home = () => {
 
     <section className="home-hero">
       <video className="hero-video" autoPlay loop muted playsInline>
-        <source src="/video/back.mp4" type="video/mp4" />
+        <source src="https://res.cloudinary.com/dtzsyzgam/video/upload/v1768907151/vd1_uhf2pi.mp4" type="video/mp4" />
       </video>
 
       <div className="hero-overlay"></div>

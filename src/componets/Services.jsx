@@ -14,7 +14,7 @@ const Services = () => {
         muted
         playsInline
       >
-        <source src="/video/vd2.mp4" type="video/mp4" />
+        <source src="https://res.cloudinary.com/dtzsyzgam/video/upload/v1768907155/vd2_hpj7pc.mp4" type="video/mp4" />
       </video>
 
       {/* OVERLAY FOR READABILITY */}

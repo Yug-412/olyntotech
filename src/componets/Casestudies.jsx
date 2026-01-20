@@ -15,7 +15,7 @@ function Casestudies() {
     muted
     playsInline
   >
-    <source src="/video/vd1.mp4" type="video/mp4" />
+    <source src="https://res.cloudinary.com/dtzsyzgam/video/upload/v1768907152/vd3_i5dv2m.mp4" type="video/mp4" />
   </video>
 
   {/* Overlay */}
