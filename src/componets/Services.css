@@ -1,12 +1,16 @@
-/* SECTION WITH VIDEO */
+/* ================================
+   SERVICES SECTION (VIDEO BG)
+================================ */
 .services-section.video-bg {
   position: relative;
-  min-height: 100vh;
+  min-height: 100svh;
   padding: 140px 24px;
   overflow: hidden;
 }
 
-/* BACKGROUND VIDEO */
+/* ================================
+   BACKGROUND VIDEO (DARKENED)
+================================ */
 .services-bg-video {
   position: absolute;
   inset: 0;
@@ -14,74 +18,201 @@
   height: 100%;
   object-fit: cover;
   z-index: 1;
+
+  /* DARK CINEMATIC TONE */
+  filter: brightness(0.45) contrast(1.15) saturate(1.05);
 }
 
-/* DARK OVERLAY */
+/* ================================
+   DARK AI OVERLAY (TEXT FRIENDLY)
+================================ */
 .services-bg-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(7, 26, 61, 0.75),
-    rgba(4, 11, 30, 0.9)
-  );
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(40, 90, 180, 0.45),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(20, 40, 90, 0.55),
+      transparent 60%
+    ),
+    linear-gradient(180deg, rgba(14, 35, 87, 0.85), rgba(15, 32, 78, 0.95));
   z-index: 2;
 }
 
-/* CONTENT ABOVE VIDEO */
+/* ================================
+   CONTENT WRAPPER
+================================ */
 .services-container {
   position: relative;
   z-index: 3;
   max-width: 1200px;
   margin: auto;
- 
 }
 
-/* TEXT COLORS FOR DARK BG */
-.services-header h1,
-.section-title {
-  color: #ffffff;
+/* ================================
+   HEADER
+================================ */
+.services-header h1 {
+  font-size: 42px;
+  line-height: 1.2;
+  font-weight: 800;
+  background: linear-gradient(90deg, #ffffff, #8ecaff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 18px;
 }
 
-.services-header p,
-.section-subtitle {
-  color: #dbe4ff;
+.services-header p {
+  font-size: 18px;
+  line-height: 1.75;
+  color: #cfe6ff;
+  max-width: 760px;
+}
+
+/* ================================
+   POINT LIST
+================================ */
+.services-points {
+  margin-top: 18px;
+  padding-left: 18px;
 }
 
 .services-points li {
-  color: #c7d2ff;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #9cc8ff;
+  list-style: "✦  ";
 }
 
-/* SERVICE CARDS */
+/* ================================
+   CORE TITLES
+================================ */
+.section-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.section-subtitle {
+  font-size: 17px;
+  color: #9cc8ff;
+  margin-top: 6px;
+}
+
+/* ================================
+   SERVICE GRID
+================================ */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
-  margin-top: 36px;
+  gap: 26px;
+  margin-top: 48px;
 }
 
+/* ================================
+   SERVICE CARD (DARK GLASS)
+================================ */
 .service-card {
-  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+  padding: 30px;
+  border-radius: 18px;
+  background: rgba(15, 25, 55, 0.65);
   backdrop-filter: blur(12px);
-  border-radius: 14px;
-  padding: 26px;
+  border: 1px solid rgba(130, 180, 255, 0.25);
   color: #ffffff;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease,
+    border-color 0.45s ease;
+  overflow: hidden;
+}
+
+/* GLOW BORDER */
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(120, 180, 255, 0.6),
+    rgba(80, 140, 255, 0.6),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  z-index: -1;
+}
+
+/* HOVER EFFECT */
+.service-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.55),
+    0 0 35px rgba(90, 150, 255, 0.35);
+  border-color: rgba(120, 180, 255, 0.6);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+/* CARD TEXT */
+.service-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #ffffff;
 }
 
 .service-card p {
-  color: #e6ecff;
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: #d6e8ff;
 }
 
-.service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+/* ================================
+   ENTRY ANIMATIONS
+================================ */
+.slide-up {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: slideUp 0.8s ease forwards;
 }
 
-/* RESPONSIVE */
+.delay-1 {
+  animation-delay: 0.15s;
+}
+.delay-2 {
+  animation-delay: 0.3s;
+}
+.delay-3 {
+  animation-delay: 0.45s;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
 @media (max-width: 900px) {
   .services-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .services-header h1 {
+    font-size: 38px;
   }
 }
 
@@ -89,41 +220,89 @@
   .services-grid {
     grid-template-columns: 1fr;
   }
+
+  .services-header h1 {
+    font-size: 32px;
+  }
+
+  .section-title {
+    font-size: 30px;
+  }
 }
 
-/* 2ns section ^//* SECTION */
+/* 2ns section ^/
+/* ROOT COLORS */
+:root {
+  --bg-dark: #060b16;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --border-glow: rgba(0, 153, 255, 0.35);
+  --primary: #00aaff;
+  --secondary: #4dd3ff;
+  --text-main: #eaf6ff;
+  --text-muted: #a8c3d9;
+}
+
+/* SECTION */
 .aiops-section {
-  padding: 60px 60px;
-  background: linear-gradient(180deg, #071a3d, #040b1e);
-  color: #ffffff;
+  background: radial-gradient(circle at top, #0a1328, #050812);
+  padding: 50px 20px;
+  color: var(--text-main);
+  overflow: hidden;
 }
 
-/* CONTAINER – FORCE EQUAL HEIGHT */
+/* HEADER */
+.aiops-header {
+  max-width: 1000px;
+  margin: 0 auto 80px;
+  text-align: center;
+}
+
+.aiops-header h2 {
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 800;
+  background: linear-gradient(90deg, #ffffff, var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+}
+
+.aiops-subtitle {
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  color: var(--secondary);
+  margin-bottom: 18px;
+}
+
+.aiops-desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* GRID */
 .aiops-container {
-  max-width: 1300px;
+  max-width: 1200px;
   margin: auto;
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 64px;
-  align-items: stretch; /* 🔥 KEY LINE */
-}
-
-/* VIDEO WRAPPER – MATCH HEIGHT */
-.aiops-video-wrap {
-  position: relative;
-  height: 100%;              /* 🔥 MATCH TEXT HEIGHT */
-  min-height: 520px;         /* 🔥 ENTERPRISE STANDARD */
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: stretch;
 }
 
 /* VIDEO */
+.aiops-video-wrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100%;
+  box-shadow: 0 0 40px rgba(0, 153, 255, 0.15);
+}
+
 .aiops-video {
   width: 100%;
-  height: 100%;              /* 🔥 FILL FULL HEIGHT */
-  object-fit: cover;         /* 🔥 NO DISTORTION */
-  display: block;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.1) saturate(1.1);
 }
 
 /* GLOW */
@@ -132,61 +311,68 @@
   inset: 0;
   background: radial-gradient(
     circle at center,
-    rgba(79, 209, 197, 0.18),
+    rgba(0, 170, 255, 0.25),
     transparent 70%
   );
-  pointer-events: none;
+  animation: pulseGlow 5s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 /* CONTENT */
 .aiops-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;   /* 🔥 BALANCED VERTICAL ALIGN */
+  gap: 30px;
+  justify-content: center;
 }
 
-.aiops-content h2 {
-  font-size: 36px;
-  margin-bottom: 6px;
+/* BLOCKS */
+.aiops-block {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
-.aiops-subtitle {
-  font-size: 14px;
-  letter-spacing: 0.6px;
-  color: #4fd1c5;
-  font-weight: 600;
-  margin-bottom: 18px;
+.aiops-block:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0, 153, 255, 0.25);
 }
 
-.aiops-desc {
-  font-size: 15.5px;
-  line-height: 1.7;
-  color: #d5dcff;
-  margin-bottom: 26px;
+.aiops-block h4 {
+  font-size: 1.3rem;
+  margin-bottom: 14px;
+  color: var(--secondary);
 }
 
-/* LISTS */
-.aiops-list,
-.aiops-impact {
-  margin-bottom: 26px;
-}
-
-.aiops-list h4,
-.aiops-impact h4 {
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-
-.aiops-list ul,
-.aiops-impact ul {
+.aiops-block ul {
   padding-left: 18px;
 }
 
-.aiops-list li,
-.aiops-impact li {
-  font-size: 14.5px;
-  margin-bottom: 6px;
-  color: #cfd8ff;
+.aiops-block li {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 8px;
+  color: var(--text-muted);
+}
+
+/* HIGHLIGHT */
+.aiops-block.highlight {
+  border: 1px solid var(--border-glow);
+  box-shadow: inset 0 0 20px rgba(0, 153, 255, 0.15);
 }
 
 /* RESPONSIVE */
@@ -196,147 +382,194 @@
   }
 
   .aiops-video-wrap {
-    min-height: 360px;
-  }
-
-  .aiops-content h2 {
-    font-size: 28px;
+    height: 320px;
   }
 }
 
-/* SECTION *//* =========================================
-   AI FINANCE & ACCOUNTING (ENTERPRISE DESIGN)
-   ========================================= *//* ===============================
-   AI FINANCE SECTION – FINAL FIX
-   =============================== */
-
+/* SECTION *//* ================================
+   AI CFO SECTION – LIGHT AI
+================================ */
 .aifin-section {
-  padding: 60px 24px;
-  background: #f6f9ff;
-  color: #071a3d;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f4f8ff 45%,
+    #ffffff 100%
+  );
+  padding: 40px 24px;
 }
 
-/* GRID */
-.aifin-container {
-  max-width: 1280px;
-  margin: auto;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;   /* 🔥 TRUE 50 / 50 */
-  gap: 64px;
-
-  align-items: stretch;            /* 🔥 SAME HEIGHT */
+/* ================================
+   HEADER
+================================ */
+.aifin-header {
+  max-width: 920px;
+  margin: 0 auto 90px;
+  text-align: center;
 }
 
-/* ================= LEFT CONTENT ================= */
-
-.aifin-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.aifin-content h2 {
-  font-size: 34px;
-  margin-bottom: 8px;
+.aifin-header h2 {
+  font-size: clamp(2.4rem, 3vw, 3.2rem);
+  font-weight: 800;
+  background: linear-gradient(90deg, #0b2545, #1f6fd8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 16px;
 }
 
 .aifin-subtitle {
   font-size: 14px;
-  font-weight: 600;
-  color: #0a5fb4;
-  margin-bottom: 20px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  color: #1f6fd8;
+  text-transform: uppercase;
+  margin-bottom: 18px;
 }
 
 .aifin-desc {
-  font-size: 15.5px;
-  line-height: 1.7;
-  margin-bottom: 28px;
-  color: #1f2d4d;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #4b6584;
 }
 
-/* BLOCKS */
-.aifin-block,
-.aifin-impact {
-  margin-bottom: 26px;
+/* ================================
+   MAIN LAYOUT
+================================ */
+.aifin-layout {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 80px;
+  align-items: stretch;
 }
 
-.aifin-block h4,
-.aifin-impact h4 {
-  font-size: 15px;
-  margin-bottom: 8px;
+/* ================================
+   CONTENT
+================================ */
+.aifin-content {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
-.aifin-block ul,
-.aifin-impact ul {
+/* ================================
+   CARD ROW (3 / 3)
+================================ */
+.aifin-card-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* ================================
+   AI CARD – LIGHT MODE
+================================ */
+.aifin-card {
+  position: relative;
+  background: #e8eff5;
+  border-radius: 18px;
+  padding: 28px;
+  border: 1px solid rgba(60, 120, 220, 0.25);
+  box-shadow: 0 14px 35px rgba(30, 80, 160, 0.08);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* SUBTLE HOVER (CLEAN, SAFE) */
+.aifin-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 45px rgba(30, 90, 180, 0.14);
+}
+
+/* FULL WIDTH CARD */
+.aifin-card.full {
+  width: 100%;
+}
+
+/* ================================
+   BUSINESS IMPACT (ALWAYS BLUE)
+================================ */
+
+.aifin-card.highlight {
+  background: #e8eff5;
+  border: 1px solid rgba(60, 120, 220, 0.25); /* same as normal cards */
+  box-shadow:
+    0 22px 45px rgba(30, 90, 180, 0.14);
+}
+
+/* ================================
+   CARD CONTENT
+================================ */
+.aifin-card h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0b2545;
+  margin-bottom: 14px;
+}
+
+.aifin-card ul {
   padding-left: 18px;
 }
 
-.aifin-block li,
-.aifin-impact li {
-  font-size: 14.5px;
-  margin-bottom: 6px;
-  color: #2b3a55;
+.aifin-card li {
+  font-size: 15.5px;
+  margin-bottom: 8px;
+  color: #425f86;
+  list-style: "✓  ";
 }
 
-/* ================= RIGHT IMAGE ================= */
-
-.aifin-video-wrap {
+/* ================================
+   VIDEO
+================================ */
+.aifin-video {
   position: relative;
-
-  width: 100%;
-  height: 100%;               /* 🔥 MATCH CONTENT HEIGHT */
-
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
-
-  background: #0b1e3c;
+  min-height: 480px;
+  box-shadow: 0 30px 70px rgba(20, 60, 120, 0.3);
 }
 
-/* IMAGE – FULL WIDTH & HEIGHT */
-.aifin-video-wrap img {
+.aifin-video video {
   width: 100%;
   height: 100%;
-
-  display: block;             /* 🔥 removes inline gaps */
-  object-fit: cover;          /* 🔥 FULL BLEED */
-  object-position: center;
+  object-fit: cover;
+  filter: brightness(0.9) contrast(1.05);
 }
 
-/* SUBTLE GLOW */
-.aifin-glow {
-  position: absolute;
-  inset: 0;
-
-  background: radial-gradient(
-    circle at center,
-    rgba(10, 166, 201, 0.22),
-    transparent 65%
-  );
-
-  pointer-events: none;
+/* ================================
+   ANIMATIONS
+================================ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
 }
 
-/* ================= RESPONSIVE ================= */
+.delay {
+  animation-delay: 0.2s;
+}
 
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
 @media (max-width: 900px) {
-  .aifin-container {
+  .aifin-layout {
     grid-template-columns: 1fr;
-    gap: 48px;
   }
 
-  .aifin-video-wrap {
-    height: 360px;           /* controlled mobile height */
-  }
-}
-
-@media (max-width: 576px) {
-  .aifin-section {
-    padding: 90px 18px;
+  .aifin-card-row {
+    grid-template-columns: 1fr;
   }
 
-  .aifin-content h2 {
-    font-size: 28px;
+  .aifin-video {
+    min-height: 320px;
   }
 }
 
@@ -498,8 +731,6 @@
   }
 }
 
-
-
 /* =========================================
    AI PROCESS SECTION – ENTERPRISE UX
    ========================================= */
@@ -544,7 +775,7 @@
   background: #ffffff;
   border-radius: 16px;
   padding: 28px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
 }
 
 .ai-step-card span {
@@ -612,7 +843,7 @@
 /* COMMON BUTTON RESET (IMPORTANT) */
 .btn-primary,
 .btn-secondary {
-  text-decoration: none;          /* 🔥 removes underline */
+  text-decoration: none; /* 🔥 removes underline */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -624,7 +855,7 @@
   font-weight: 600;
   letter-spacing: 0.2px;
 
-  transition: 
+  transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
     background 0.25s ease,
@@ -699,21 +930,38 @@
   animation: fadeRight 0.8s ease forwards;
 }
 
-.delay-1 { animation-delay: 0.1s; }
-.delay-2 { animation-delay: 0.2s; }
-.delay-3 { animation-delay: 0.3s; }
-.delay-4 { animation-delay: 0.4s; }
+.delay-1 {
+  animation-delay: 0.1s;
+}
+.delay-2 {
+  animation-delay: 0.2s;
+}
+.delay-3 {
+  animation-delay: 0.3s;
+}
+.delay-4 {
+  animation-delay: 0.4s;
+}
 
 @keyframes fadeUp {
-  to { opacity: 1; transform: translateY(0); }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeLeft {
-  to { opacity: 1; transform: translateX(0); }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes fadeRight {
-  to { opacity: 1; transform: translateX(0); }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* ================= RESPONSIVE ================= */

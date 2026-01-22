@@ -11,7 +11,6 @@ function Casestudies() {
   <video
     className="case-bg-video"
     autoPlay
-    loop
     muted
     playsInline
   >

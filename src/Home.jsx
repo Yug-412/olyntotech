@@ -6,7 +6,7 @@ const Home = () => {
   return (<>
 
     <section className="home-hero">
-      <video className="hero-video" autoPlay loop muted playsInline>
+      <video className="hero-video" autoPlay muted playsInline>
         <source src="https://res.cloudinary.com/dtzsyzgam/video/upload/v1768907151/vd1_uhf2pi.mp4" type="video/mp4" />
       </video>
 
@@ -54,75 +54,73 @@ const Home = () => {
         {/* LEFT */}
         <div className="enterprise-card reveal-left">
           <h2>What We Do</h2>
-          <p className="section-subtitle1">Enterprise AI Agent Solutions</p>
+          <p className="section-subtitle1">Enterprise AI Agents</p>
 
           <p className="lead">
-            We don’t build tools.<br />
-            We build <strong>autonomous AI agents</strong> that execute work,
-            make decisions, and integrate directly into your systems.
+            We build <strong>AI agents that do real work</strong> —
+            automating operations, finance, and internal workflows
+            directly inside your existing systems.
           </p>
 
           <div className="service-block">
-            <h4>AI Operations Agents (AI COO)</h4>
-            <p>
-              Automate workflows, coordination, reporting, and exception handling.
-            </p>
-            <span>Outcome: Faster execution, fewer errors, lower costs</span>
+            <h4>Operations AI</h4>
+            <p>Automates daily workflows, coordination, and reporting.</p>
+            <span>Result: Faster execution, lower costs</span>
           </div>
 
           <div className="service-block">
-            <h4>AI Finance & Accounting Agents (AI CFO)</h4>
-            <p>
-              Automate AP/AR, forecasting, reconciliations, and compliance.
-            </p>
-            <span>Outcome: Better cash visibility & financial control</span>
+            <h4>Finance AI</h4>
+            <p>Handles accounting, forecasting, and compliance tasks.</p>
+            <span>Result: Real-time financial visibility</span>
           </div>
 
           <div className="service-block highlight">
-            <h4> Custom Enterprise AI Automation</h4>
+            <h4>Custom Enterprise Automation</h4>
             <p>
-              Design and deploy AI agents for complex, cross-department workflows
-              tailored to your organization.
+              AI agents built for your internal systems and
+              cross-team workflows.
             </p>
-            <span>Outcome: Fully automated back-office operations</span>
+            <span>Result: Scalable, hands-free operations</span>
           </div>
         </div>
 
         {/* RIGHT */}
         <div className="enterprise-card dark reveal-right">
           <h2>How It Works</h2>
-          <p className="section-subtitle">Our Proven 4-Step AI Deployment Framework</p>
+          <p className="section-subtitle">
+            A Simple 4-Step Deployment
+          </p>
 
           <ol className="steps">
             <li>
               <span>01</span>
               <div>
-                <h5>AI Operations Audit</h5>
-                <p>Identify workflows where AI replaces human effort.</p>
+                <h5>Audit</h5>
+                <p>We identify work that AI can fully automate.</p>
               </div>
             </li>
 
             <li>
               <span>02</span>
               <div>
-                <h5>Agent Design & Architecture</h5>
-                <p>Secure, scalable agents aligned with your systems.</p>
+                <h5>Design</h5>
+                <p>We architect secure, enterprise-ready AI agents.</p>
               </div>
             </li>
 
             <li>
               <span>03</span>
               <div>
-                <h5>Enterprise Deployment</h5>
-                <p>Agents integrate into ERP, CRM, finance tools.</p>
+                <h5>Deploy</h5>
+                <p>Agents integrate with ERP, CRM, and core tools.</p>
               </div>
             </li>
 
             <li>
               <span>04</span>
               <div>
-                <h5>Monitoring, ROI & Scaling</h5>
-                <p>Optimize performance and scale across teams.</p>
+                <h5>Scale</h5>
+                <p>We monitor performance and expand usage.</p>
               </div>
             </li>
           </ol>
@@ -130,6 +128,7 @@ const Home = () => {
 
       </div>
     </section>
+
 
     {/* ================= BUSINESS IMPACT (NEW SECTION) ================= */}
     <section className="business-impact-section">
@@ -259,11 +258,7 @@ const Home = () => {
         </div>
 
       </div>
-
-      
-      
     </section>
-
 
     {/* ================= OUR WORK – ENTERPRISE WORKFLOWS ================= */}
     <section className="workflow-showcase our-work-bg">
@@ -272,7 +267,7 @@ const Home = () => {
         <div className="workflow-header">
           <h2>Our Work in Action</h2>
           <p>
-            Real-world AI workflows deployed across ERP systems,
+            Real-world AI workflows deployed across enterprise systems,
             automation pipelines, dashboards, and conversational interfaces.
           </p>
         </div>
@@ -283,14 +278,14 @@ const Home = () => {
             <img src="/img/erp-workflow.png" alt="ERP Workflow Automation" />
             <div className="workflow-overlay">
               <h4>ERP Workflow Automation</h4>
-              <span>Requirements → Design → Development → Testing</span>
+              <span>Requirements → Design → Build → Deploy</span>
             </div>
           </div>
 
           <div className="workflow-card">
             <img src="/img/ai-automation.png" alt="AI Automation Workflow" />
             <div className="workflow-overlay">
-              <h4>AI Automation Workflow</h4>
+              <h4>AI Automation Pipelines</h4>
               <span>Tasks, approvals, integrations, dashboards</span>
             </div>
           </div>
@@ -298,15 +293,15 @@ const Home = () => {
           <div className="workflow-card">
             <img src="/img/analytics-dashboard.png" alt="Operational Dashboard" />
             <div className="workflow-overlay">
-              <h4>Operational Intelligence Dashboards</h4>
-              <span>Secure analytics, KPIs, performance tracking</span>
+              <h4>Operational Intelligence</h4>
+              <span>KPIs, insights, secure performance tracking</span>
             </div>
           </div>
 
           <div className="workflow-card">
             <img src="/img/chatbot-flow.png" alt="AI Chatbot Workflow" />
             <div className="workflow-overlay">
-              <h4>AI Chatbot Workflows</h4>
+              <h4>AI Conversational Workflows</h4>
               <span>User intent → decision → execution</span>
             </div>
           </div>

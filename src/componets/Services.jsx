@@ -10,7 +10,7 @@ const Services = () => {
       <video
         className="services-bg-video"
         autoPlay
-        loop
+
         muted
         playsInline
       >
@@ -76,54 +76,52 @@ const Services = () => {
 
 
     <section className="aiops-section">
+      {/* FULL-WIDTH HEADER */}
+      <div className="aiops-header">
+        <h2>AI Operations Agents (AI COO)</h2>
+        <p className="aiops-subtitle">Autonomous Enterprise Operations</p>
+        <p className="aiops-desc">
+          Autonomous AI agents that run enterprise operations —
+          coordinating workflows, tracking execution, and delivering
+          real-time operational insight.
+        </p>
+      </div>
+
+      {/* MAIN CONTENT */}
       <div className="aiops-container">
 
-        {/* VIDEO SIDE */}
+        {/* VIDEO */}
         <div className="aiops-video-wrap">
           <video
             className="aiops-video"
             autoPlay
-            loop
             muted
+            loop
             playsInline
-            disablePictureInPicture
-            controls={false}
           >
             <source src="/video/ai1.mp4" type="video/mp4" />
           </video>
-
           <div className="aiops-glow"></div>
         </div>
 
-
-        {/* TEXT SIDE */}
+        {/* CONTENT */}
         <div className="aiops-content">
-          <h2>AI Operations Agents (AI COO)</h2>
-          <p className="aiops-subtitle">Autonomous Enterprise Operations</p>
-
-          <p className="aiops-desc">
-            We deploy autonomous AI agents that manage enterprise operations
-            end-to-end — coordinating workflows, tracking execution,
-            and reporting outcomes in real time.
-          </p>
-
-          <div className="aiops-list">
-            <h4>What the AI Handles</h4>
+          <div className="aiops-block">
+            <h4>What the AI Manages</h4>
             <ul>
-              <li>Cross-team task orchestration</li>
+              <li>Workflow orchestration across teams</li>
               <li>Operational dashboards & reporting</li>
-              <li>Exception handling & escalations</li>
-              <li>ERP, CRM & internal system automation</li>
-              <li>Vendor and stakeholder coordination</li>
+              <li>Exceptions, escalations, and alerts</li>
+              <li>ERP, CRM, and internal system automation</li>
             </ul>
           </div>
 
-          <div className="aiops-impact">
+          <div className="aiops-block highlight">
             <h4>Business Impact</h4>
             <ul>
-              <li>30–50% operational cost reduction</li>
+              <li>30–50% reduction in operational costs</li>
               <li>Faster execution cycles</li>
-              <li>Fewer manual errors</li>
+              <li>Lower manual error rates</li>
               <li>Real-time operational visibility</li>
             </ul>
           </div>
@@ -132,24 +130,29 @@ const Services = () => {
       </div>
     </section>
 
+
     {/* // 3rd section */}
 
     <section className="aifin-section">
-      <div className="aifin-container">
 
-        {/* LEFT – CONTENT */}
-        <div className="aifin-content slide-left">
-          <h2>AI Finance & Accounting Agents (AI CFO)</h2>
-          <p className="aifin-subtitle">
-            Autonomous Finance Operations
-          </p>
+      {/* ===== HEADER ===== */}
+      <div className="aifin-header">
+        <h2>AI Finance & Accounting Agents (AI CFO)</h2>
+        <p className="aifin-subtitle">Autonomous Finance Operations</p>
+        <p className="aifin-desc">
+          Enterprise-grade AI agents that autonomously manage finance workflows
+          with precision, compliance, and real-time intelligence.
+        </p>
+      </div>
 
-          <p className="aifin-desc">
-            We build AI agents that handle core finance workflows with
-            enterprise-grade precision, auditability, and compliance.
-          </p>
+      {/* ===== MAIN LAYOUT ===== */}
+      <div className="aifin-layout">
 
-          <div className="aifin-block">
+        {/* LEFT CONTENT */}
+        <div className="aifin-content fade-up">
+
+          {/* FULL WIDTH CARD */}
+          <div className="aifin-card full">
             <h4>What We Automate</h4>
             <ul>
               <li>Accounts payable & receivable</li>
@@ -160,34 +163,44 @@ const Services = () => {
             </ul>
           </div>
 
-          <div className="aifin-block">
-            <h4>Replaces</h4>
-            <ul>
-              <li>Accounting staff</li>
-              <li>Manual finance reviews</li>
-              <li>Spreadsheet-driven processes</li>
-            </ul>
+          {/* 3 / 3 GRID */}
+          <div className="aifin-card-row">
+
+            <div className="aifin-card">
+              <h4>Replaces</h4>
+              <ul>
+                <li>Manual accounting operations</li>
+                <li>Spreadsheet-driven workflows</li>
+                <li>Human-error-prone reviews</li>
+              </ul>
+            </div>
+
+            <div className="aifin-card highlight">
+              <h4>Business Impact</h4>
+              <ul>
+                <li>Faster financial close cycles</li>
+                <li>Reduced operational risk</li>
+                <li>Real-time financial visibility</li>
+                <li>Stronger governance & control</li>
+              </ul>
+            </div>
+
           </div>
 
-          <div className="aifin-impact">
-            <h4>Business Impact</h4>
-            <ul>
-              <li>Improved cash-flow control</li>
-              <li>Reduced financial errors</li>
-              <li>Faster closes & reporting</li>
-              <li>Stronger financial governance</li>
-            </ul>
-          </div>
         </div>
 
-
-        <div className="aifin-video-wrap slide-right">
-          <img src="/img/cf0.png" alt="" />
-          <div className="aifin-glow"></div>
+        {/* RIGHT VIDEO */}
+        <div className="aifin-video fade-up delay">
+          <video autoPlay muted loop playsInline>
+            <source src="/video/CFO.mp4" type="video/mp4" />
+          </video>
         </div>
 
       </div>
     </section>
+
+
+
 
 
     <section className="ai-enterprise-section">
@@ -196,7 +209,7 @@ const Services = () => {
         {/* VIDEO COLUMN */}
         <div className="ai-video-wrap fade-right">
           <video
-            src="/video/ai2.mp4"
+            src="/video/AI.mp4"
             autoPlay
             loop
             muted
