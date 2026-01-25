@@ -203,23 +203,7 @@ function AboutUs() {
       <section className="who-section">
         <div className="who-container">
 
-          {/* LEFT CONTENT */}
-          <div className="who-content fade-left">
-            <h2>Who We Work With</h2>
-
-            <p className="who-intro">We partner with:</p>
-
-            <ul className="who-list">
-              <li>Mid-market companies ($10M–$500M revenue)</li>
-              <li>Enterprise organizations</li>
-              <li>Operations-heavy and process-driven teams</li>
-            </ul>
-
-            <p className="who-note">
-              Our clients are forward-thinking leaders who see AI not as a trend,
-              but as a <strong>strategic advantage</strong>.
-            </p>
-          </div>
+         
 
           {/* RIGHT CTA */}
           <div className="who-cta fade-right">

@@ -101,3 +101,37 @@
     text-align: center;
   }
 }
+/* Space between bottom text and legal links */
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px; /* ← controls spacing */
+}
+
+/* Legal links spacing */
+.footer-legal {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* space between links */
+}
+
+/* Separator spacing */
+.footer-legal span {
+  margin: 0 6px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Mobile polish */
+@media (max-width: 600px) {
+  .footer-bottom {
+    gap: 18px;
+    text-align: center;
+  }
+
+  .footer-legal {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 14px;
+  }
+}

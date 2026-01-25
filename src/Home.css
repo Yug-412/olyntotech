@@ -252,7 +252,7 @@ body {
 ================================ */
 .why-olynto {
   background: linear-gradient(180deg, #050f24, #030b1a);
-  padding: 100px 0;
+  padding: 50px 0;
 }
 
 /* GRID */
@@ -270,7 +270,7 @@ body {
    COMMON COLUMN STYLE
 ================================ */
 .why-col {
-  padding: 46px 40px;
+  padding: 50px 40px;
   border-radius: 20px;
   box-shadow:
     0 30px 80px rgba(0, 0, 0, 0.55),
@@ -505,7 +505,7 @@ body {
   }
 } /* ================= ENTERPRISE SPLIT ================= */
 .enterprise-split {
-  padding: 120px 6%;
+  padding: 50px 6%;
   background:
     radial-gradient(circle at top left, #eef2ff, transparent 45%),
     radial-gradient(circle at bottom right, #edeaff, transparent 45%),
@@ -731,7 +731,7 @@ body {
 
 /* ================= BUSINESS IMPACT SECTION ================= */
 .business-impact-section {
-  padding: 90px 6%;
+  padding: 50px 6%;
   background: linear-gradient(180deg, #071a33 0%, #050f24 100%);
 }
 
@@ -862,7 +862,7 @@ body {
   }
 } /* ================= OUR WORK – BLUE & WHITE AI THEME ================= */
 .workflow-showcase {
-  padding: 110px 6%;
+  padding: 50px 6%;
   background:
     radial-gradient(
       circle at top left,

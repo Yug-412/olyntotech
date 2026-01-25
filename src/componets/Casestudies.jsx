@@ -1,71 +1,407 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Casestudy.css";
 
+
+
+
+
 function Casestudies() {
+
+
+  /* ===============================
+   RESULTS COUNTER LOGIC
+================================ */
+  const resultsRef = useRef(null);
+  const [startResults, setStartResults] = useState(false);
+
+  const [v1, setV1] = useState(0);
+  const [v2, setV2] = useState(0);
+  const [v3, setV3] = useState("0");
+  const [v4, setV4] = useState("0");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStartResults(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    if (resultsRef.current) observer.observe(resultsRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!startResults) return;
+
+    steppedCounter(setV1, 30, 2200);
+    steppedCounter(setV2, 100, 2600);
+
+    // Static values with delay
+    setTimeout(() => setV3("24/7"), 1400);
+    setTimeout(() => setV4("↑"), 1700);
+  }, [startResults]);
+
+  function steppedCounter(setter, end, duration) {
+    let start = 0;
+    const steps = 40;
+    const increment = Math.max(1, Math.floor(end / steps));
+    const interval = duration / steps;
+
+    const timer = setInterval(() => {
+      start += increment;
+
+      if (start >= end) {
+        setter(end);
+        clearInterval(timer);
+      } else {
+        setter(start);
+      }
+    }, interval);
+  }
+
+  /* ===============================
+      FINANCE COUNTER STATE
+   =============================== */
+  const [count, setCount] = useState(0);
+
+  /* ===============================
+     AI OPS COUNTER STATES
+  =============================== */
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  const [countCost, setCountCost] = useState(0);
+  const [countHours, setCountHours] = useState(0);
+  const [countSpeed, setCountSpeed] = useState(0);
+  const [countVisibility, setCountVisibility] = useState(0);
+  const [started, setStarted] = useState(false);
+
+
+  /* ===============================
+     INTERSECTION OBSERVER (AI OPS)
+  =============================== */
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // wait for paint, then start animation
+          requestAnimationFrame(() => {
+            setStarted(true);
+          });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.35 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+
+  /* ===============================
+     AI OPS COUNT-UP LOGIC
+  =============================== */
+  useEffect(() => {
+    if (!started) return;
+
+    animateCounter(setCountCost, 38, 3200);
+    animateCounter(setCountHours, 1200, 3600);
+    animateCounter(setCountSpeed, 45, 3000);
+    animateCounter(setCountVisibility, 100, 3400);
+  }, [started]);
+
+  /* ===============================
+     FINANCE COUNT-UP LOGIC
+  =============================== */
+  useEffect(() => {
+    if (!started) return;
+
+    animateCounter(setCount, 42, 3000);
+  }, [started]);
+
+
+  /* ===============================
+     HELPER FUNCTION
+  =============================== */
+  function animateCounter(setter, end, duration = 3000) {
+    let startTime = null;
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // premium ease-out (very slow near end)
+      const eased = 1 - Math.pow(1 - progress, 4);
+
+      const value = Math.floor(eased * end);
+      setter(value);
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+  /* ===============================
+     SUB COMPONENTS
+  =============================== */
+  function FlowBlock({ title, items }) {
+    return (
+      <div className="flow-step">
+        <h4>{title}</h4>
+        <ul>
+          {items.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+
+  function ImpactCard({ label, value, suffix }) {
+    return (
+      <div className="impact-item">
+        <strong>{value}{suffix}</strong>
+        <span>{label}</span>
+      </div>
+    );
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    const counters = document.querySelectorAll(".result-card strong");
+    const section = document.querySelector(".cs-results");
+
+    let hasAnimated = false;
+
+    const animateCounter = (el) => {
+      const target = el.dataset.value;
+      const suffix = el.dataset.suffix || "";
+      const symbol = el.dataset.symbol || "";
+
+      // Special cases (24/7, ↑)
+      if (target.includes("/") || symbol) {
+        setTimeout(() => {
+          el.textContent = symbol ? symbol : target;
+        }, 800);
+        return;
+      }
+
+      const end = parseInt(target, 10);
+      let current = 0;
+
+      const duration = 1800; // slower = more premium feel
+      const steps = 40;
+      const increment = Math.max(1, Math.floor(end / steps));
+      const interval = duration / steps;
+
+      const timer = setInterval(() => {
+        current += increment;
+
+        if (current >= end) {
+          current = end;
+          clearInterval(timer);
+        }
+
+        el.textContent = current + suffix;
+      }, interval);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !hasAnimated) {
+            hasAnimated = true;
+            counters.forEach(counter => animateCounter(counter));
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        threshold: 0.4,
+      }
+    );
+
+    observer.observe(section);
+  });
+
+
   return (
     <>
-     {/* ================= CASE STUDIES HERO SECTION ================= */}
-<section className="case-hero case-video">
-  
-  {/* Background Video */}
-  <video
-    className="case-bg-video"
-    autoPlay
-    muted
-    playsInline
-  >
-    <source src="https://res.cloudinary.com/dtzsyzgam/video/upload/v1768907152/vd3_i5dv2m.mp4" type="video/mp4" />
-  </video>
+      <section className="case-hero case-video">
+        <video className="case-bg-video" autoPlay muted loop playsInline>
+          <source
+            src="https://res.cloudinary.com/dtzsyzgam/video/upload/v1768907152/vd3_i5dv2m.mp4"
+            type="video/mp4"
+          />
+        </video>
 
-  {/* Overlay */}
-  <div className="case-overlay"></div>
+        <div className="case-overlay"></div>
 
-  {/* Content */}
-  <div className="case-container">
-    <h2 className="case-title">
-      Real AI Deployments. Measurable Business Impact.
-    </h2>
+        {/* CONTENT OFFSET */}
+        <div className="case-container case-content-offset">
+          <div className="case-card">
+            <h2 className="case-title">
+              Real <span className="ai-highlight">AI Deployments</span> Measurable
+              Business Impact
+            </h2>
 
-    <p className="case-subtitle">
-      Delivering AI, Automation, Cybersecurity & Modern Web Solutions for
-      Global Clients
-    </p>
+            <p className="case-subtitle">
+              Delivering AI-Automation, Cybersecurity & Modern Web Solutions
+            </p>
 
-    <p className="case-desc">
-      At OlyntoTech, we deploy <strong>autonomous Real AI agents</strong>
-      into real enterprise environments to replace manual operations,
-      finance processes, and back-office workflows.
-    </p>
+            <p className="case-desc">
+              At <span className="ai-highlight1">Olynto Technologies</span>, we deploy{" "}
+              <strong>autonomous Real AI agents</strong> into real enterprise
+              environments.
+            </p>
 
-    <p className="case-note">
-      To respect client confidentiality, all case studies are{" "}
-      <strong>anonymous and outcome-focused</strong>, following enterprise
-      standards.
-    </p>
-  </div>
-</section>
-
-
-       <section className="cs-auto">
-      <div className="cs-container">
-
-        {/* HEADER */}
-        <div className="cs-header fade-up">
-          <h3>CUSTOM ENTERPRISE AI AUTOMATION</h3>
-          <div className="cs-meta">
-            <span><strong>Industry:</strong> Professional Services</span>
-            <span><strong>Company Size:</strong> 120+ employees</span>
-            <span><strong>Region:</strong> US-based</span>
+            <p className="case-note">
+              All case studies are anonymous and outcome-focused.
+            </p>
           </div>
         </div>
+      </section>
 
-        {/* MAIN GRID */}
-        <div className="cs-grid">
 
-          {/* LEFT CONTENT */}
-          <div className="cs-content fade-left">
+      <section className="cs-auto">
+        <div className="cs-container">
 
-            <div className="cs-block">
+          {/* HEADER */}
+          <div className="cs-header fade-up">
+            <h3>CUSTOM ENTERPRISE AI AUTOMATION</h3>
+            <div className="cs-header-line"></div>
+
+            <div className="cs-meta">
+              <span><strong>Industry:</strong> Professional Services</span>
+              <span><strong>Company Size:</strong> 120+ employees</span>
+              <span><strong>Region:</strong> US-based</span>
+            </div>
+          </div>
+
+          {/* GRID */}
+          <div className="cs-grid">
+
+            {/* LEFT CONTENT */}
+            <div className="cs-content fade-left">
+
+              <div className="cs-block">
+                <h4>Problem</h4>
+                <ul className="stagger-list">
+                  <li className="stagger-item">
+                    Heavy reliance on operations coordinators
+                  </li>
+                  <li className="stagger-item">
+                    Manual task tracking across multiple teams
+                  </li>
+                  <li className="stagger-item">
+                    Delayed reporting and approval cycles
+                  </li>
+                  <li className="stagger-item">
+                    Rising operational overhead and execution risk
+                  </li>
+                </ul>
+              </div>
+
+              <div className="cs-block">
+                <h4>AI Solutions Deployed</h4>
+                <ul className="stagger-list">
+                  <li className="stagger-item">
+                    Autonomous AI Operations Agents
+                  </li>
+                  <li className="stagger-item">
+                    Automated task routing and priority assignment
+                  </li>
+                  <li className="stagger-item">
+                    Real-time operational dashboards
+                  </li>
+                  <li className="stagger-item">
+                    Exception detection and escalation logic
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+
+            {/* RIGHT SIDE (UNCHANGED) */}
+            <div className="fade-right cs-visual-placeholder">
+              <div className="cs-visual-hint">
+                <span>Enterprise AI Operations</span>
+                <p>Designed for speed, resilience, and scale</p>
+              </div>
+            </div>
+
+          </div>
+
+
+          {/* RESULTS */}
+          <div className="cs-results" ref={resultsRef}>
+            <div className="cs-result-grid">
+
+              <div className="result-card">
+                <strong>{v1}%</strong>
+                <span>Faster financial operations</span>
+              </div>
+
+              <div className="result-card">
+                <strong>{v2}%</strong>
+                <span>Audit logs & traceability</span>
+              </div>
+
+              <div className="result-card">
+                <strong>24/7</strong>
+                <span>Autonomous execution</span>
+              </div>
+
+              <div className="result-card">
+                <strong>{v4}</strong>
+                <span>Improved compliance control</span>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+      </section>
+
+
+
+
+      <section className="ai-finance-case">
+        <div className="ai-finance-container">
+
+          {/* HEADER */}
+          <div className="ai-finance-header slide-up">
+            <h3>AI FINANCE & ACCOUNTING AGENTS (AI CFO)</h3>
+            <div className="ai-finance-meta">
+              <span><strong>Industry:</strong> Professional Services</span>
+              <span><strong>Company Size:</strong> ~80 employees</span>
+              <span><strong>Region:</strong> US-based</span>
+            </div>
+          </div>
+
+          {/* IMAGES */}
+          <div className="ai-finance-images fade-in">
+            <div className="img-wrap">
+              <img src="/img/img5.jpg" alt="AI CFO Dashboard" />
+            </div>
+            <div className="img-wrap">
+              <img src="/img/img6.jpg" alt="Finance Automation View" />
+            </div>
+          </div>
+
+          {/* CONTENT GRID */}
+          <div className="ai-finance-grid">
+            <div className="ai-finance-box">
               <h4>Problem</h4>
               <ul>
                 <li>Manual AP/AR workflows</li>
@@ -75,7 +411,7 @@ function Casestudies() {
               </ul>
             </div>
 
-            <div className="cs-block">
+            <div className="ai-finance-box">
               <h4>AI Solutions Deployed</h4>
               <ul>
                 <li>AI Finance & Accounting Agents</li>
@@ -85,206 +421,109 @@ function Casestudies() {
               </ul>
             </div>
 
-          </div>
-
-          {/* RIGHT VISUAL */}
-          <div className="cs-visual fade-right">
-            <img src="/img/img1.jpg" alt="AI Finance Dashboard" />
-            <img src="/img/img2.jpg" alt="Automation Analytics" />
-          </div>
-
-        </div>
-
-        {/* RESULTS */}
-        <div className="cs-results fade-up">
-          <h4>Results <span>(within 60–90 days)</span></h4>
-
-          <div className="cs-metrics">
-            <div className="metric">
-              <strong>30%</strong>
-              <span>Reduction in process delays</span>
-            </div>
-
-            <div className="metric">
-              <strong>100%</strong>
-              <span>Audit logs & traceability</span>
-            </div>
-
-            <div className="metric">
-              <strong>24/7</strong>
-              <span>Autonomous execution</span>
-            </div>
-
-            <div className="metric">
-              <strong>↑</strong>
-              <span>Improved compliance control</span>
-            </div>
-          </div>
-
-          <p className="cs-status">
-            <strong>Status:</strong> Scaling to additional workflows
-          </p>
-        </div>
-
-      </div>
-    </section>
-    <section className="ai-finance-case">
-      <div className="ai-finance-container">
-
-        {/* HEADER */}
-        <div className="ai-finance-header slide-up">
-          <h3>AI FINANCE & ACCOUNTING AGENTS (AI CFO)</h3>
-
-          <div className="ai-finance-meta">
-            <span><strong>Industry:</strong> Professional Services</span>
-            <span><strong>Company Size:</strong> ~80 employees</span>
-            <span><strong>Region:</strong> US-based</span>
-          </div>
-        </div>
-
-        {/* IMAGES */}
-        <div className="ai-finance-images fade-in">
-          <img src="/img/img5.jpg" alt="AI CFO Dashboard" />
-          <img src="/img/img6.jpg" alt="Finance Automation View" />
-        </div>
-
-        {/* CONTENT GRID */}
-        <div className="ai-finance-grid">
-
-          <div className="ai-finance-box">
-            <h4>Problem</h4>
-            <ul>
-              <li>Manual AP/AR workflows</li>
-              <li>Spreadsheet-driven reconciliations</li>
-              <li>Delayed cash-flow visibility</li>
-              <li>High dependency on accounting staff</li>
-            </ul>
-          </div>
-
-          <div className="ai-finance-box">
-            <h4>AI Solutions Deployed</h4>
-            <ul>
-              <li>AI Finance & Accounting Agents</li>
-              <li>Automated invoice processing</li>
-              <li>Continuous reconciliation & reporting</li>
-              <li>Compliance checks and alerts</li>
-            </ul>
-          </div>
-
-          <div className="ai-finance-box">
-            <h4>Roles Replaced</h4>
-            <ul>
-              <li>2× Accounting staff</li>
-              <li>Manual financial review processes</li>
-            </ul>
-          </div>
-
-        </div>
-
-        {/* RESULTS */}
-        <div className="ai-finance-results slide-up">
-          <h4>Results <span>(Within 60–90 Days)</span></h4>
-
-          <div className="result-bars">
-            <div>
-              <label>Finance workload reduction</label>
-              <span>42%</span>
-            </div>
-            <div>
-              <label>Cash-flow visibility</label>
-              <span>Near real-time</span>
-            </div>
-            <div>
-              <label>Financial errors</label>
-              <span>Significantly reduced</span>
-            </div>
-            <div>
-              <label>Monthly closes</label>
-              <span>Faster cycles</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-      <section className="ai-ops-case">
-      <div className="ai-ops-container">
-
-        {/* HEADER */}
-        <div className="ai-ops-header reveal">
-          <h3>AI OPERATIONS AGENTS (AI COO)</h3>
-          <div className="ai-ops-meta">
-            <span><strong>Industry:</strong> Mid-Market SaaS</span>
-            <span><strong>Company Size:</strong> ~120 employees</span>
-            <span><strong>Region:</strong> North America</span>
-          </div>
-        </div>
-
-        {/* MAIN LAYOUT */}
-        <div className="ai-ops-layout">
-
-          {/* LEFT – STORY FLOW */}
-          <div className="ai-ops-flow">
-
-            <div className="flow-step">
-              <h4>Operational Challenges</h4>
-              <ul>
-                <li>Heavy reliance on operations coordinators</li>
-                <li>Manual task tracking across teams</li>
-                <li>Delayed reporting and approvals</li>
-                <li>Rising operational costs</li>
-              </ul>
-            </div>
-
-            <div className="flow-step">
-              <h4>AI Solutions Deployed</h4>
-              <ul>
-                <li>Autonomous AI Operations Agents</li>
-                <li>Automated task routing & prioritization</li>
-                <li>Real-time operational dashboards</li>
-                <li>Exception detection & escalation logic</li>
-              </ul>
-            </div>
-
-            <div className="flow-step">
+            <div className="ai-finance-box">
               <h4>Roles Replaced</h4>
               <ul>
-                <li>3× Operations Analysts</li>
-                <li>1× Operations Coordinator</li>
+                <li>2× Accounting staff</li>
+                <li>Manual financial review processes</li>
               </ul>
             </div>
-
           </div>
 
-          {/* RIGHT – VISUAL STACK */}
-          <div className="ai-ops-visual reveal">
-            <img src="/img/img3.jpg" alt="AI Operations Dashboard" />
-            <img src="/img/img4.jpg" alt="Operations Performance View" />
+          {/* RESULTS */}
+          <div className="ai-finance-results slide-up">
+            <h4>Results <span>(Within 60–90 Days)</span></h4>
+
+            <div className="result-bars">
+
+              <div className="bar">
+                <label>Finance workload reduction</label>
+                <span>42%</span>
+                <div className="progress">
+                  <div className="progress-fill" style={{ width: `${count}%` }} />
+                </div>
+              </div>
+
+              <div className="bar">
+                <label>Cash-flow visibility</label>
+                <span>Near real-time</span>
+                <div className="progress">
+                  <div className="progress-fill w90" />
+                </div>
+              </div>
+
+              <div className="bar">
+                <label>Financial errors</label>
+                <span>Reduced</span>
+                <div className="progress">
+                  <div className="progress-fill w80" />
+                </div>
+              </div>
+
+              <div className="bar">
+                <label>Monthly closes</label>
+                <span>Faster cycles</span>
+                <div className="progress">
+                  <div className="progress-fill w70" />
+                </div>
+              </div>
+
+            </div>
           </div>
 
         </div>
+      </section>
+      {/* ================= AI COO ================= */}
+      <section className="ai-ops-case" ref={sectionRef}>
+        <div className="ai-ops-container">
 
-        {/* RESULTS */}
-        <div className="ai-ops-impact reveal">
-          <h4>Results <span>(Within 90 Days)</span></h4>
-
-          <div className="impact-grid">
-            <div className="impact-item">38% reduction in operational costs</div>
-            <div className="impact-item">1,200+ hours saved annually</div>
-            <div className="impact-item">Faster execution cycles</div>
-            <div className="impact-item">Real-time visibility into operations</div>
+          <div className="ai-ops-header reveal">
+            <h3>AI OPERATIONS AGENTS (AI COO)</h3>
           </div>
 
-          <p className="ai-ops-status">
-            <strong>Status:</strong> Ongoing expansion across departments
-          </p>
-        </div>
+          <div className="ai-ops-layout">
+            <div className="ai-ops-flow">
+              <FlowBlock
+                title="Operational Challenges"
+                items={[
+                  "Manual coordination",
+                  "Delayed approvals",
+                  "High operational costs"
+                ]}
+              />
+              <FlowBlock
+                title="AI Solutions"
+                items={[
+                  "Autonomous AI agents",
+                  "Real-time dashboards",
+                  "Exception handling"
+                ]}
+              />
+            </div>
 
-      </div>
-    </section>
+            <div className="ai-ops-visual reveal">
+              <img src="/img/img3.jpg" alt="AI Ops" />
+              <img src="/img/img4.jpg" alt="AI Ops View" />
+            </div>
+          </div>
+
+          <div className="ai-ops-impact reveal">
+            <h4>Results</h4>
+            <div className="impact-grid">
+              <ImpactCard label="Cost reduction" value={countCost} suffix="%" />
+              <ImpactCard label="Hours saved" value={countHours} suffix="+" />
+              <ImpactCard label="Speed improvement" value={countSpeed} suffix="%" />
+              <ImpactCard label="Visibility" value={countVisibility} suffix="%" />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
     </>
   );
 }
 
+
 export default Casestudies;
+
