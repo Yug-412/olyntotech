@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AdminInquiry.css";
 
+const API_BASE_URL = "https://olynto-backend.onrender.com";
+
 const AdminInquiry = () => {
   const navigate = useNavigate();
 
@@ -16,10 +18,13 @@ const AdminInquiry = () => {
     }
   }, [navigate]);
 
-  /* 📥 FETCH INQUIRIES (MONGODB) */
+  /* 📥 FETCH INQUIRIES (LIVE BACKEND) */
   useEffect(() => {
-    fetch("http://localhost:5000/api/inquiries")
-      .then((res) => res.json())
+    fetch(`${API_BASE_URL}/api/inquiries`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch");
+        return res.json();
+      })
       .then((data) => {
         setInquiries(data);
         setLoading(false);
@@ -34,12 +39,22 @@ const AdminInquiry = () => {
   const handleRemove = async (id) => {
     if (!window.confirm("Are you sure you want to delete this inquiry?")) return;
 
-    await fetch(`http://localhost:5000/api/inquiries/${id}`, {
-      method: "DELETE",
-    });
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/inquiries/${id}`, {
+        method: "DELETE",
+      });
 
-    setInquiries((prev) => prev.filter((item) => item._id !== id));
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.message);
+
+      setInquiries((prev) => prev.filter((item) => item._id !== id));
+    } catch (error) {
+      alert("Delete failed. Please try again.");
+      console.error(error);
+    }
   };
+
 
   /* 🚪 LOGOUT */
   const handleLogout = () => {
@@ -92,15 +107,12 @@ const AdminInquiry = () => {
                 <tr key={item._id}>
                   <td>{item.name}</td>
                   <td>{item.email}</td>
-
                   <td>
                     <span className="message-cell" title={item.message}>
                       {item.message}
                     </span>
                   </td>
-
                   <td>{formatDate(item.createdAt)}</td>
-
                   <td>
                     <button
                       className="remove-btn"

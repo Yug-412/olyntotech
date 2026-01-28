@@ -1,22 +1,25 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const inquirySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
+const inquirySchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      lowercase: true,
+      trim: true,
+    },
+    message: {
+      type: String,
+      required: true,
+      trim: true,
+    },
   },
-  email: {
-    type: String,
-    required: true
-  },
-  message: {
-    type: String,
-    required: true
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
-});
+  { timestamps: true }
+);
 
-module.exports = mongoose.model("Inquiry", inquirySchema);
+export default mongoose.model("Inquiry", inquirySchema);

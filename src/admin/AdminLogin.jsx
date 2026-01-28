@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../config/api";
 import "./Admin.css";
 
 function AdminLogin() {
@@ -13,35 +14,25 @@ function AdminLogin() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Handle input change
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+    setForm({ ...form, [e.target.name]: e.target.value });
     setError("");
   };
 
-  // Handle login submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
 
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/admin/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: form.username.trim(),
-            password: form.password,
-          }),
-        }
-      );
+      const response = await fetch(`${API_URL}/api/admin/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: form.username.trim(),
+          password: form.password,
+        }),
+      });
 
       const data = await response.json();
 
@@ -49,12 +40,10 @@ function AdminLogin() {
         throw new Error(data.message || "Login failed");
       }
 
-      // ✅ Login success
       localStorage.setItem("adminAuth", "true");
       localStorage.setItem("adminId", data.adminId);
 
       navigate("/admin/inquiry");
-
     } catch (err) {
       setError(err.message || "Invalid username or password");
     } finally {
@@ -75,7 +64,6 @@ function AdminLogin() {
           placeholder="Admin username"
           value={form.username}
           onChange={handleChange}
-          autoComplete="username"
           required
         />
 
@@ -85,7 +73,6 @@ function AdminLogin() {
           placeholder="Password"
           value={form.password}
           onChange={handleChange}
-          autoComplete="current-password"
           required
         />
 
